@@ -10,11 +10,6 @@ class BuildHomeRoute implements BuildRoute {
   @override
   MaterialPageRoute buildRouteFor(String route) {
 
-//    todoRepository.init().then((i) async {
-//      List<Todo> items = await todoRepository.fetchAll();
-//      items.forEach((x) => print(x.text));
-//    });
-
     return MaterialPageRoute(builder: (BuildContext context) {
       return HomeScreen();
     });
