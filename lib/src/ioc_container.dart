@@ -8,7 +8,7 @@ class IocContainer {
   static final GetIt getIt = GetIt();
 
   t resolve<t>(){
-    return getIt.get();
+    return getIt.get<t>();
   }
 
   void wireUp(){
