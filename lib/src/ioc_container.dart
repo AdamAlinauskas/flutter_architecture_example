@@ -13,11 +13,6 @@ class IocContainer {
 
   void wireUp(){
     getIt.registerSingleton<TodoRepository>(TodoRepository());
-    var repo = getIt.get<TodoRepository>();
-
-    getIt.registerFactory<TodoController>(
-            () => TodoController(getIt.get<TodoRepository>()));
-
-    getIt.get<TodoController>();
+    getIt.registerFactory<TodoController>(() => TodoController(getIt.get<TodoRepository>()));
   }
 }
