@@ -8,27 +8,58 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  var text = '';
+
   @override
   Widget build(BuildContext context) {
     var controller = Provider.of<TodoController>(context);
-    var text = '';
 
-    controller.items.forEach((x)=>print(x));
+    controller.items.forEach((x) => print(x));
 
     return Scaffold(
         appBar: AppBar(
           title: Text('Create'),
         ),
-        body: Center(
-          child: TextField(
-            onChanged: (changed){
-              text = changed;
-            },
-            onSubmitted: (submitted){
-
-              controller.create(submitted, context);
-            },
+        body: Container(
+          padding: EdgeInsets.all(10.0),
+          child: Form(
+            key: _formKey,
+            child: Center(
+              child: ListView(
+                children: [
+                  TextFormField(
+                    autofocus: true,
+                    onSaved: (value) => text = value,
+                    validator: (value) =>
+                        value == '' ? 'Please add some text' : null,
+                    decoration: InputDecoration(
+                        labelText: 'Todo',
+                        filled: true,
+                        fillColor: Colors.white),
+                  ),
+                  RaisedButton(
+                    onPressed: _submitForm,
+                    child: Text(
+                      'Create',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ));
+  }
+
+  void _submitForm() {
+    var form = _formKey.currentState;
+    if (!form.validate()) {
+      return;
+    }
+    form.save();
+
+    var controller = Provider.of<TodoController>(context);
+    controller.create(text, context);
   }
 }
