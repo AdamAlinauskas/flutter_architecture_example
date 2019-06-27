@@ -13,16 +13,13 @@ class DBHelper {
 
   static Future<Database>  open() async {
     print('creating database');
-    final initialScript = [
-      '''CREATE TABLE todo
-            (
-              id INTEGER PRIMARY KEY,
-              text TEXT,
-              isComplete BIT
-            ) ''',
-    ];
+    final initialScript = ['CREATE TABLE todo( id INTEGER PRIMARY KEY,text TEXT,isComplete BIT)'];
+    List<String> migrations = List<String>();
+    var scripts = Migrator.getMigrations();
+    scripts.values.forEach((value) {
+      migrations.add(value);
+    });
 
-    final migrations = Migrations.getMigrations();
     final config = MigrationConfig(initializationScript: initialScript, migrationScripts: migrations);
 
     //path provider module gets us the location where we can put files.

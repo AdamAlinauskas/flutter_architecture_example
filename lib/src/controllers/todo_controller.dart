@@ -10,13 +10,13 @@ class TodoController extends ChangeNotifier {
   TodoController(this._repo);
 
   void loadTodos() async {
-    items = await _repo.fetchAll();//TODO: needs to be extracted to a query
+    items = await _repo.fetchAll(); // TODO: needs to be extracted to a query
     notifyListeners();
   }
 
-  void create(String text, BuildContext context) { //TODO: needs to be extracted to a command
+  void create(String text, BuildContext context) {
     print(text);
-    _repo.save(Todo(text:text));
+    _repo.save(Todo(text:text)); // TODO: needs to be extracted to a command
     loadTodos();
     Navigate.goBack(context);
   }

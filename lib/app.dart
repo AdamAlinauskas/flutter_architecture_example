@@ -10,11 +10,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.normal)
         ),
-
         title: 'todo',
         onGenerateRoute: Router().route,
       ),
