@@ -3,19 +3,15 @@ import 'package:todo/src/data_access/todo_repository.dart';
 import 'package:todo/src/entities/todo.dart';
 import 'package:todo/src/routes/navigate.dart';
 
+import '../ioc_container.dart';
+
 class TodoController extends ChangeNotifier {
-  TodoRepository repo;
+  final TodoRepository repo = IocContainer.resolve<TodoRepository>();
   List<Todo> items = [];
 
-  TodoController(this.repo);
-
   void loadTodos() async {
-    //should call a command
     await repo.init();
     items = await repo.fetchAll();
-//    theItems.clear();
-//    theItems.forEach((x)=>items.add(x)); //no need to loop can replace.
-
     notifyListeners();
   }
 

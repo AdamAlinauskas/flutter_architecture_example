@@ -3,6 +3,6 @@ import 'package:todo/src/ioc_container.dart';
 import 'app.dart';
 
 main() {
-  IocContainer().wireUp();
+  IocContainer.wireUp();
   runApp(App());
 }

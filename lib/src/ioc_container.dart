@@ -4,20 +4,14 @@ import 'controllers/todo_controller.dart';
 import 'data_access/todo_repository.dart';
 
 class IocContainer {
+  static final GetIt _locator = GetIt();
 
-  static final GetIt getIt = GetIt();
-
-  t resolve<t>(){
-    return getIt.get();
+  static t resolve<t>() {
+    return _locator<t>();
   }
 
-  void wireUp(){
-    getIt.registerSingleton<TodoRepository>(TodoRepository());
-    var repo = getIt.get<TodoRepository>();
-
-    getIt.registerFactory<TodoController>(
-            () => TodoController(getIt.get<TodoRepository>()));
-
-    getIt.get<TodoController>();
+  static void wireUp() {
+    _locator.registerLazySingleton(() => TodoRepository());
+    _locator.registerLazySingleton(() => TodoController());
   }
 }

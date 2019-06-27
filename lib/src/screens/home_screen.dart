@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/src/data_access/todo_repository.dart';
-import 'package:todo/src/entities/todo.dart';
 import 'package:todo/src/routes/navigate.dart';
 import 'package:todo/src/controllers/todo_controller.dart';
 
