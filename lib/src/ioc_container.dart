@@ -12,6 +12,6 @@ class IocContainer {
 
   static void wireUp() {
     _locator.registerLazySingleton(() => TodoRepository());
-    _locator.registerLazySingleton(() => TodoController());
+    _locator.registerLazySingleton(() => TodoController(_locator<TodoRepository>()));
   }
 }
