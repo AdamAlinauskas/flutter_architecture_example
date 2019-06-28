@@ -20,7 +20,7 @@ class TodoController extends ChangeNotifier {
     print(text);
     _repo.save(Todo(text:text)); // TODO: needs to be extracted to a command
     loadTodos();
-    Navigate.goBack(context);
+    Navigate.back(context);
   }
 
   void complete(Todo item) {

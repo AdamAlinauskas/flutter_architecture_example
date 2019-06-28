@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 
 class Navigate {
-  static toHomeScreen(BuildContext context) {
-    Navigator.pushNamed(context, '/create');
+  static to(BuildContext context, String path) {
+    Navigator.pushNamed(context, path);
   }
 
-  static void goBack(BuildContext context) {
+  static void back(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  static void backUntil(BuildContext context, String path) {
+    Navigator.popAndPushNamed(context, path);
   }
 }
