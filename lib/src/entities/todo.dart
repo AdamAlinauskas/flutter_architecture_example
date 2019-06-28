@@ -20,4 +20,5 @@ class Todo {
   Map<String, dynamic> toMapForDb() {
     return <String, dynamic>{'text': text, 'isComplete': isComplete};
   }
+
 }

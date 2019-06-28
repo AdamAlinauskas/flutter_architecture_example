@@ -19,11 +19,8 @@ class HomeScreen extends StatelessWidget {
             title: Text('TODO'),
             bottom: TabBar(
               tabs: <Widget>[
-                Text(
-                  '-',
-                  style: TextStyle(fontSize: 32),
-                ),
-                Icon(Icons.check),
+                Icon(Icons.check_box_outline_blank),
+                Icon(Icons.check_box),
               ],
             ),
           ),
@@ -31,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Center(child: todo(context)),
               Center(
-                child: CircularProgressIndicator(),
+                child: complete(context),
               )
             ],
           ),
@@ -42,12 +39,39 @@ class HomeScreen extends StatelessWidget {
     var controller = Provider.of<TodoController>(context);
     if (controller.items.length == 0) return Text('All done, nothing to do');
 
-    return ListView.builder(
+    return ListView.separated(
         itemCount: controller.items.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(controller.items[index].text),
+          return Card(
+            child: ListTile(
+              title: Text(controller.items[index].text),
+              trailing: IconButton(
+                icon: Icon(Icons.check),
+                onPressed: () => controller.complete(controller.items[index]),
+              ),
+            ),
           );
-        });
+        }, separatorBuilder: (BuildContext context, int index) {
+          return Container();
+    },);
+  }
+
+  complete(BuildContext context) {
+    var controller = Provider.of<TodoController>(context);
+    var items = controller.completedItems;
+    if (items.length == 0) return Text('Complete some tasks');
+
+    return ListView.separated(
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: ListTile(
+              title: Text(items[index].text),
+            ),
+          );
+
+        }, separatorBuilder: (BuildContext context, int index) {
+          return Container();
+    },);
   }
 }
