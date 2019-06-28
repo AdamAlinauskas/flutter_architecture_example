@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
     var controller = Provider.of<TodoController>(context);
     if (controller.items.length == 0) return Text('All done, nothing to do');
 
-    return ListView.builder(
+    return ListView.separated(
         itemCount: controller.items.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
@@ -52,7 +52,9 @@ class HomeScreen extends StatelessWidget {
               onPressed: () => controller.complete(controller.items[index]),
             ),
           );
-        });
+        }, separatorBuilder: (BuildContext context, int index) {
+          return Divider();
+    },);
   }
 
   complete(BuildContext context) {
@@ -60,12 +62,15 @@ class HomeScreen extends StatelessWidget {
     var items = controller.completedItems;
     if (items.length == 0) return Text('Complete some tasks');
 
-    return ListView.builder(
+    return ListView.separated(
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Text(items[index].text),
           );
-        });
+
+        }, separatorBuilder: (BuildContext context, int index) {
+          return Divider();
+    },);
   }
 }
