@@ -19,11 +19,8 @@ class HomeScreen extends StatelessWidget {
             title: Text('TODO'),
             bottom: TabBar(
               tabs: <Widget>[
-                Text(
-                  '-',
-                  style: TextStyle(fontSize: 32),
-                ),
-                Icon(Icons.check),
+                Icon(Icons.check_box_outline_blank),
+                Icon(Icons.check_box),
               ],
             ),
           ),
