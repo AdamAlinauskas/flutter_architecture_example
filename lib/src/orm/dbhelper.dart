@@ -7,9 +7,7 @@ import 'package:sqflite_migration/sqflite_migration.dart';
 
 import 'migrations/migrations.dart';
 
-
 class DBHelper {
-
 
   static Future<Database>  open() async {
     print('creating database');
@@ -24,7 +22,7 @@ class DBHelper {
 
     //path provider module gets us the location where we can put files.
     //It's not a temp location. Or at least we hope.
-    final databasesPath = await getDatabasesPath();
+    final databasesPath = "/data/user/0/com.example.adam.todo/databases";
     final path = join(databasesPath, 'data.db');
 
     return await openDatabaseWithMigration(path, config);

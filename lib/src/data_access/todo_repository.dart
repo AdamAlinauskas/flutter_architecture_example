@@ -24,7 +24,7 @@ class TodoRepository {
   }
 
   Future<int> clear() {
-    return db.delete('Items');
+    return db.delete('todo');
   }
 }
 

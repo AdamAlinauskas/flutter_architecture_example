@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^0.1.2
 
   sqflite: ^1.1.5
@@ -19,11 +18,12 @@ dependencies:
   path_provider: ^0.5.0+1
   get_it: ^1.0.3+2
   sqflite_migration: ^0.1.0
+  test: ^1.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  mockito: ^4.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

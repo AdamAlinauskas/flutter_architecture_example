@@ -4,5 +4,5 @@ import 'package:todo/src/tasks/startup.dart';
 import 'app.dart';
 
 main() {
-  Startup.execute().then((value)=> runApp(App()));
+  Startup.execute().then((controller)=> runApp(App(controller)));
 }
