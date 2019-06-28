@@ -18,9 +18,30 @@ class TodoRepository {
     return maps.map((x) => Todo.fromDb(x)).toList();
   }
 
+  Future<List<Todo>> fetchNotCompleted() async {
+    final maps = await db.query('todo',
+        columns: null,
+        where: 'isComplete is null or isComplete=?',
+        whereArgs: [0]);
+    return maps.map((x) => Todo.fromDb(x)).toList();
+  }
+
+  Future<List<Todo>> fetchCompleted() async {
+    final maps = await db.query('todo',
+        columns: null,
+        where: 'isComplete=?',
+        whereArgs: [1]);
+    return maps.map((x) => Todo.fromDb(x)).toList();
+  }
+
   Future<int> save(Todo item) {
-    return db.insert('todo', item.toMapForDb(),
-    );
+    return db.insert('todo', item.toMapForDb());
+  }
+
+  Future<int> update(Todo item) {
+    return db.update('todo', item.toMapForDb(),
+    where: 'id=?',
+    whereArgs: [item.id]);
   }
 
   Future<int> clear() {

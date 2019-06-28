@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Center(child: todo(context)),
               Center(
-                child: CircularProgressIndicator(),
+                child: complete(context),
               )
             ],
           ),
@@ -47,6 +47,24 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Text(controller.items[index].text),
+            trailing: IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () => controller.complete(controller.items[index]),
+            ),
+          );
+        });
+  }
+
+  complete(BuildContext context) {
+    var controller = Provider.of<TodoController>(context);
+    var items = controller.completedItems;
+    if (items.length == 0) return Text('Complete some tasks');
+
+    return ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(items[index].text),
           );
         });
   }
