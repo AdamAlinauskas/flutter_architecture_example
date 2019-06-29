@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'build_create_screen.dart';
-import 'build_home_route.dart';
+import 'buildRoutes/build_create_route.dart';
+import 'buildRoutes/build_home_route.dart';
 
 class Router{
   final routeList = [BuildHomeRoute(), BuildCreateRoute()];

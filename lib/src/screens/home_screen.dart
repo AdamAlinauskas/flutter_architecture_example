@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/src/routes/buildRoutes/home_route.dart';
+import 'package:todo/src/routes/buildRoutes/build_create_route.dart';
+import 'package:todo/src/routes/buildRoutes/build_home_route.dart';
 import 'package:todo/src/routes/navigate.dart';
 import 'package:todo/src/controllers/todo_controller.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
               child: Icon(Icons.create),
               onPressed: () {
-                Navigate.to(context, BuildHomeRoute.path);
+                Navigate.to(context, BuildCreateRoute.path);
               }),
           appBar: AppBar(
             title: Text('TODO'),

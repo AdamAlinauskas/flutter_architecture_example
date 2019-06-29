@@ -20,10 +20,8 @@ class DBHelper {
 
     final config = MigrationConfig(initializationScript: initialScript, migrationScripts: migrations);
 
-    //path provider module gets us the location where we can put files.
-    //It's not a temp location. Or at least we hope.
-    final databasesPath = "/data/user/0/com.example.adam.todo/databases";
-    final path = join(databasesPath, 'data.db');
+    final databasePath = await getDatabasesPath();
+    final path = join(databasePath, 'data.db');
 
     return await openDatabaseWithMigration(path, config);
   }
